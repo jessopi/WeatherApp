@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weekly Forecast.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/EntryFormStyle.css}"/> <!-- Current form css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/HeaderStyle.css}"/> <!-- Adds css for header fragment -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- ICON FOR CURRENT LOCATION -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUpsmOT1CxyhSZ9EN_DXaIsXiA-dBBqlM&libraries=places"></script> <!-- GOOGLE MAP API --->
+</head>
+<body>
+
+<header th:replace="fragments/HeaderFragment :: fragment"></header> <!-- Header template fragment -->
+
+<div class="pageTitle"><h2> Weather Forecast</h2></div>
+    <div class="inline-block">
+        <div th:text="${Error}" class="error"></div> <!-- Empty text that holds error warnings from backend -->
+        <form name="autocompleteForm" onsubmit="return validateForm()" th:action="@{/Forecast}" method="post"> <!-- Sends post request with locationField data -->
+            <div><input class="locationField" type="text" id="locationTextField" placeholder="Location"  name="locationTextField" ></div>
+            <div> <button class="locationSubmit" type="submit" >Search</button></div>
+       </form>
+        <form method="post" th:action="@{/Forecast}"> <!-- Sends post request with geolocation data -->
+            <input type="hidden" name="geolocation" id="geolocation">
+            <div><button class="geolocationButton" type="submit"name="geoButton" value="geoButton"> <i class="fa fa-location-arrow"></i>Use Current Location</button></div>
+        </form>
+    </div>
+
+    <!-- SCRIPT FOR VALIDATING EMPTY STRING/SPACES -->
+    <script>
+        function validateForm() {
+            var x = document.forms["autocompleteForm"]["locationTextField"].value;
+            if (x == "") {
+                alert("Location field cannot be empty.");
+                return false;
+            } else if (!x.replace(/\s/g, '').length) {
+                alert("Location does not contain a valid input.")
+                return false;
+            }
+    }
+    </script>
+    <!-- SCRIPT FOR GETTING GEO COORDINATES -->
+    <script>
+        var x = document.getElementById("geolocation");
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(showPosition);
+            }
+        }
+        function showPosition(position) {
+            x.value =position.coords.latitude + "," + position.coords.longitude;
+        }
+        window.onload = getLocation;
+    </script>
+    <!-- SCRIPT FOR INITIALIZING AUTOCOMPLETE LOCATION -->
+    <script>
+        function init() {
+            var input = document.getElementById('locationTextField');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+        }
+            google.maps.event.addDomListener(window, 'load', init);
+    </script>
+</body>
+</html>

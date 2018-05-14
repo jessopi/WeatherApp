@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weekly Forecast.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/HeaderStyle.css}"/> <!-- CSS for header fragment -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/AboutStyle.css}"/> <!-- CSS for About.html -->
+</head>
+<body>
+<header th:replace="fragments/HeaderFragment :: fragment"></header> <!-- Template fragment for header -->
+
+<h1 class="titleHeader">About</h1>
+
+<article>
+    <p> Created by Ian Jessop</p>
+    <p>Web Application that retrieves current and weekly forecast by using specified address or by using current geocode location.</p>
+    <p>Used Google Map Places API for the ability to autocomplete locations in form textbox.</p>
+    <p>Used Google Geocode API to check if entered location exists and to fetch location name and coordinates.</p>
+    <p>Retrieved current weather and weather forecast using Dark Sky API.</p>
+    <p>Technologies used: Spring Boot, Thymeleaf, Java, JavaScript, HTML, CSS</p>
+</article>
+</body>
+</html>
