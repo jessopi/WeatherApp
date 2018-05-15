@@ -47,6 +47,7 @@ div > div {
 */
 .divA{
      background: rgba(0, 0, 0, 0.3); /* Black background with 30% opacity */
+     border-radius: 15px;
      width: 600px;
      height: 220px;
 }
@@ -55,6 +56,7 @@ div > div {
 */
 .divB{
     background: rgba(0, 0, 0, 0.3); /* Black background with 30% opacity */
+    border-radius: 15px;
     width: 600px;
     height: 560px;
 }
