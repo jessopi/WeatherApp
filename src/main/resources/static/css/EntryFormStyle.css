@@ -70,6 +70,7 @@ h2 {
 
 body {
     background-image: url("https://i.imgur.com/EcWeA7g.jpg");
+    background-size:cover;
 }
 
 @media screen and (max-width: 600px) {

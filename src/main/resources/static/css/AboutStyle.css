@@ -22,4 +22,5 @@ article{
 
 body{
     background-image: url("https://i.imgur.com/EcWeA7g.jpg");
+    background-size:cover;
 }
